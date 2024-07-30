@@ -8,13 +8,19 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles.css">
 </head>
 <body>
+<nav class="navbar">
+    <ul>
+        <li><a href=${pageContext.request.contextPath}"/">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/matches">Matches</a></li>
+    </ul>
+</nav>
 <div class="container">
     <h1>Tennis Score Board</h1>
     <form class="new-match-group" action="${pageContext.request.contextPath}/new-match" method="get">
-        <button class="new-match-btn">New Match</button>
+        <button class="new-match-btn" type="submit">New Match</button>
     </form>
     <form class="view-matches-group" action="${pageContext.request.contextPath}/matches" method="get">
-        <button class="matches-btn">View Matches</button>
+        <button class="matches-btn" type="submit">View Matches</button>
     </form>
 </div>
 <footer>
