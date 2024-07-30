@@ -20,7 +20,7 @@ import java.util.UUID;
 import static com.alexshin.tennisscoreboard.util.ParseParams.parsePlayerNum;
 import static com.alexshin.tennisscoreboard.util.ParseParams.parseUUID;
 
-@WebServlet(name = "matchScoreServlet", urlPatterns = "/match-score")
+@WebServlet(name = "match-score-servlet", urlPatterns = "/match-score")
 public class MatchScoreServlet extends HttpServlet {
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
     private final MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService();
@@ -39,6 +39,7 @@ public class MatchScoreServlet extends HttpServlet {
             logger.info("Forwarded to match-score.jsp");
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
+            logger.error(e);
             // TODO: error.jsp
         }
 
@@ -56,7 +57,7 @@ public class MatchScoreServlet extends HttpServlet {
             logger.info("Got match with uuid=" + match.getUuid());
 
             matchScoreCalculationService.updateMatchScore(match, wonPointPlayerNum);
-
+            logger.info("Add point to player " + wonPointPlayerNum);
 
             if (MatchScoreCalculationService.isMatchFinished(match)) {
                 ongoingMatchesService.saveMatch(match);
@@ -75,6 +76,7 @@ public class MatchScoreServlet extends HttpServlet {
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
             // TODO: error.jsp
+            throw new RuntimeException(e);
         }
 
 

@@ -35,16 +35,22 @@ public class NewMatchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("Received POST on /new-match");
-        String player1Name = parsePlayerName(req.getParameter("player1Name"));
-        String player2Name = parsePlayerName(req.getParameter("player2Name"));
+
+        try {
+            String player1Name = parsePlayerName(req.getParameter("player1-name"));
+            String player2Name = parsePlayerName(req.getParameter("player2-name"));
 
 
-        MatchDTO match = ongoingMatchesService.createNewMatch(player1Name, player2Name);
-        logger.info("Got match with uuid=" + match.getUuid());
+            MatchDTO match = ongoingMatchesService.createNewMatch(player1Name, player2Name);
+            logger.info("Got match with uuid=" + match.getUuid());
 
-        String redirectURL = "/match-score?uuid=%s".formatted(match.getUuid());
-        resp.sendRedirect(req.getContextPath() + redirectURL);
-        logger.info("Redirected to /match-score");
+            String redirectURL = "%s/match-score?uuid=%s".formatted(req.getContextPath(), match.getUuid());
+            resp.sendRedirect(redirectURL);
+            logger.info("Redirected to /match-score");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
 
