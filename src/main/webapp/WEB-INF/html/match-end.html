@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Score Board</title>
+    <link rel="stylesheet" href="../../resources/styles.css">
+</head>
+
+<body>
+<nav class="navbar">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Matches</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <h1 class="winner">Player# won</h1>
+    <div class="final-table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Set</th>
+                <th>Game</th>
+                <th>Point</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>Player1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Player2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="end-match-menu">
+    <form class="new-match-group" action="${pageContext.request.contextPath}/new-match" method="get">
+        <button class="new-match-btn" type="submit">New Match</button>
+    </form>
+    <form class="view-matches-group" action="${pageContext.request.contextPath}/matches" method="get">
+        <button class="matches-btn" type="submit">View Matches</button>
+    </form>
+</div>
+</body>
+</html>

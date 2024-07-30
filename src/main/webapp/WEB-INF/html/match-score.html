@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Score Board</title>
+    <link rel="stylesheet" href="../../resources/styles.css">
+</head>
+
+<body>
+<nav class="navbar">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Matches</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <h1 class="match-score">Ongoing Match</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Set</th>
+                <th>Game</th>
+                <th>Point</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>Player1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td><form action="/match-score?uuid=$match_id" method="post">
+                    <button class="second-player-win-point-btn" type="submit">Add point</button>
+                </form></td>
+            </tr>
+            <tr>
+                <td>Player2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td><form action="/match-score?uuid=$match_id" method="post">
+                    <button class="first-player-win-point-btn" type="submit">Add point</button>
+                </form></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+</body>
+</html>
