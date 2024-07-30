@@ -27,5 +27,7 @@ public class MatchScoreModel {
 
     private String winner;
 
+    private String uuid;
+
 }
 

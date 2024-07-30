@@ -31,8 +31,9 @@ public class MatchMapper extends ModelMapper {
                     String.valueOf(source.getPlayer2Game()),
                     getPlayerPointString(source, 1),
                     getPlayerPointString(source, 2),
-                    source.getWinner().getName()
-            );
+                    source.getWinner().getName(),
+                    source.getUuid().toString()
+                    );
         };
 
         TypeMap<MatchDTO, MatchScoreModel> dtoToScoreMap = mapper.createTypeMap(MatchDTO.class, MatchScoreModel.class);

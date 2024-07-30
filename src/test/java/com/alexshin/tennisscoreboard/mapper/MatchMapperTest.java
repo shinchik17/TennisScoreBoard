@@ -7,6 +7,8 @@ import com.alexshin.tennisscoreboard.model.entity.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 import static com.alexshin.tennisscoreboard.service.MatchScoreCalculationService.getPlayerPointString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,6 +28,7 @@ public class MatchMapperTest {
         matchEntity.setWinner(player1);
 
         matchDTO = new MatchDTO(player1, player2);
+        matchDTO.setUuid(UUID.randomUUID());
         matchDTO.setPlayerSet(1, 1);
         matchDTO.setPlayerGame(1, 2);
         matchDTO.setPlayerGame(2, 4);
@@ -66,6 +69,7 @@ public class MatchMapperTest {
         assertEquals(String.valueOf(matchDTO.getPlayer2Game()), matchScore.getPlayer2Game());
         assertEquals(getPlayerPointString(matchDTO, 1), matchScore.getPlayer1Point());
         assertEquals(getPlayerPointString(matchDTO, 2), matchScore.getPlayer2Point());
+        assertEquals(matchDTO.getUuid().toString(), matchScore.getUuid());
 
 
 
