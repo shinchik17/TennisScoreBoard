@@ -3,9 +3,12 @@ package com.alexshin.tennisscoreboard.mapper;
 import com.alexshin.tennisscoreboard.model.MatchScoreModel;
 import com.alexshin.tennisscoreboard.model.dto.MatchDTO;
 import com.alexshin.tennisscoreboard.model.entity.Match;
+import com.alexshin.tennisscoreboard.model.entity.Player;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
+
+import java.util.Optional;
 
 import static com.alexshin.tennisscoreboard.service.MatchScoreCalculationService.getPlayerPointString;
 
@@ -22,6 +25,13 @@ public class MatchMapper extends ModelMapper {
 
         Converter<MatchDTO, MatchScoreModel> toScoreConverter = context -> {
             MatchDTO source = context.getSource();
+            String winner;
+            if (source.getWinner() == null) {
+                winner = "";
+            } else {
+                winner = source.getWinner().getName();
+            }
+
             return new MatchScoreModel(
                     source.getPlayer1().getName(),
                     source.getPlayer2().getName(),
@@ -31,7 +41,7 @@ public class MatchMapper extends ModelMapper {
                     String.valueOf(source.getPlayer2Game()),
                     getPlayerPointString(source, 1),
                     getPlayerPointString(source, 2),
-                    source.getWinner().getName(),
+                    winner,
                     source.getUuid().toString()
                     );
         };
