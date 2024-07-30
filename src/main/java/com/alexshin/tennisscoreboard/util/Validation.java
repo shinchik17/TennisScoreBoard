@@ -3,7 +3,7 @@ package com.alexshin.tennisscoreboard.util;
 
 public class Validation {
 
-    private final static String NAME_VALIDATE_PATTERN = "[a-zA-zА-Яа-я ]";
+    private final static String NAME_VALIDATE_PATTERN = "[a-zA-zА-Яа-я ]+";
     private final static String uuidSubPattern = "[0-9a-fA-F]";
     private final static String UUID_VALIDATE_PATTERN = String.format("%1$s{8}-%1$s{4}-%1$s{4}-%1$s{4}-%1$s{12}", uuidSubPattern);
     private final static String PLAYER_NUM_VALIDATE_PATTERN = "[1|2]";
