@@ -39,6 +39,7 @@ public class OngoingMatchesService {
 
     public void saveMatch(MatchDTO match) {
         finishedMatchesPersistenceService.saveMatch(mapper.map(match, Match.class));
+        matchesMap.remove(match.getUuid());
     }
 
 }

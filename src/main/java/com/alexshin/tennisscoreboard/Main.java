@@ -6,9 +6,11 @@ import com.alexshin.tennisscoreboard.model.entity.Match;
 import com.alexshin.tennisscoreboard.model.entity.Player;
 import com.alexshin.tennisscoreboard.repository.MatchesRepository;
 import com.alexshin.tennisscoreboard.repository.PlayersRepository;
+import com.alexshin.tennisscoreboard.service.FinishedMatchesPersistenceService;
 import com.alexshin.tennisscoreboard.service.MatchScoreCalculationService;
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.alexshin.tennisscoreboard.util.ParseParams.parsePageNum;
@@ -22,6 +24,9 @@ public class Main {
 //        Player player2 = new Player("Daniil Medvedev");
 //        var playersReository = new PlayersRepository();
 //        var matchesReository = new MatchesRepository();
+//        FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
+//        List<Match> matches = finishedMatchesPersistenceService.findMatches(1);
+//        System.out.println(" ");
 //        playersReository.save(player1);
 //        playersReository.saveOrGet(player2);
 //
@@ -37,9 +42,7 @@ public class Main {
 //        matchesReository.save(matchEntity);
 //        System.out.println(matchEntity);
 
-        String pageNum = "d1";
-        var v = parsePlayerFilter(pageNum);
-        System.out.println("");
+
 
 
 

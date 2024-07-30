@@ -21,7 +21,6 @@ import static com.alexshin.tennisscoreboard.util.ParseParams.*;
 @WebServlet(name = "new-match-servlet", urlPatterns = "/new-match")
 public class NewMatchServlet extends HttpServlet {
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
-    private final ModelMapper mapper = new ModelMapper();
     private final Logger logger = LogManager.getLogger();
 
 
@@ -29,6 +28,7 @@ public class NewMatchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.getRequestDispatcher(JspHelper.getPath("new-match")).forward(req, resp);
+        logger.info("Received GET on /new-match. Forwarded to new-match.jsp");
 
     }
 
@@ -43,8 +43,8 @@ public class NewMatchServlet extends HttpServlet {
         logger.info("Got match with uuid=" + match.getUuid());
 
         String redirectURL = "/match-score?uuid=%s".formatted(match.getUuid());
-        resp.sendRedirect(redirectURL);
-        logger.info("Send redirect to /match-score");
+        resp.sendRedirect(req.getContextPath() + redirectURL);
+        logger.info("Redirected to /match-score");
 
 
 
