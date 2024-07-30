@@ -158,9 +158,7 @@ table button {
     font-size: 1.5rem;
     text-shadow: 0.2rem 0.1rem 0.2rem var(--active-btn-blue);
     padding: 10px 20px;
-    /*justify-self: right;*/
-    /*align-self: flex-end;*/
-    /*display: flex;*/
+
 }
 
 .search-player-form input {
@@ -168,7 +166,7 @@ table button {
     max-width: none;
 }
 .search-player-form button, .search-player-form label {
-    margin: 0;
+    margin: 0 5px;
     padding: 10px;
 }
 
