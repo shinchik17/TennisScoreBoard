@@ -14,11 +14,11 @@ public class Main {
 
 
         Player player1 = new Player("Alkaras");
-        Player player2 = new Player("Medvedev");
+        Player player2 = new Player("Daniil Medvedev");
         var playersReository = new PlayersRepository();
         var matchesReository = new MatchesRepository();
         playersReository.save(player1);
-        playersReository.save(player2);
+        playersReository.saveOrGet(player2);
 
         MatchDTO match = new MatchDTO(player1, player2);
         match.setWinnerByNum(1);

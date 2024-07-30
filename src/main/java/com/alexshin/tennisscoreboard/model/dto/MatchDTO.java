@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 
 @Getter
 @NoArgsConstructor
@@ -25,6 +27,8 @@ public class MatchDTO {
     
     private Player winner;
 
+    private UUID uuid;
+
     public MatchDTO(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
@@ -34,7 +38,7 @@ public class MatchDTO {
         return switch (playerNum) {
             case 1 -> player1Point;
             case 2 -> player2Point;
-            default -> throw new IllegalStateException("Unexpected playerNum value: " + playerNum);
+            default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         };
     }
 
@@ -42,7 +46,7 @@ public class MatchDTO {
         switch (playerNum) {
             case 1 -> player1Point = point;
             case 2 -> player2Point = point;
-            default -> throw new IllegalStateException("Unexpected playerNum value: " + playerNum);
+            default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         }
     }
 
@@ -50,7 +54,7 @@ public class MatchDTO {
         return switch (playerNum) {
             case 1 -> player1Game;
             case 2 -> player2Game;
-            default -> throw new IllegalStateException("Unexpected playerNum value: " + playerNum);
+            default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         };
     }
 
@@ -58,7 +62,7 @@ public class MatchDTO {
         switch (playerNum) {
             case 1 -> player1Game = game;
             case 2 -> player2Game = game;
-            default -> throw new IllegalStateException("Unexpected playerNum value: " + playerNum);
+            default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         }
         setPlayer1Point(0);
         setPlayer2Point(0);
@@ -68,7 +72,8 @@ public class MatchDTO {
         return switch (playerNum) {
             case 1 -> player1Set;
             case 2 -> player2Set;
-            default -> throw new IllegalStateException("Unexpected playerNum value: " + playerNum);
+            
+            default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         };
     }
 
@@ -76,7 +81,7 @@ public class MatchDTO {
         switch (playerNum) {
             case 1 -> player1Set = set;
             case 2 -> player2Set = set;
-            default -> throw new IllegalStateException("Unexpected playerNum value: " + playerNum);
+            default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         }
         setPlayer1Game(0);
         setPlayer2Game(0);
@@ -86,7 +91,7 @@ public class MatchDTO {
         winner = switch (playerNum) {
             case 1 -> player1;
             case 2 -> player2;
-            default -> throw new IllegalStateException("Unexpected playerNum value: " + playerNum);
+            default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         };
     }
 

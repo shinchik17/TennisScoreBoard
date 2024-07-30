@@ -6,6 +6,7 @@ import com.alexshin.tennisscoreboard.model.entity.Player;
 import com.alexshin.tennisscoreboard.util.HibernateUtil;
 import lombok.Cleanup;
 import org.hibernate.SessionFactory;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.util.Optional;
@@ -49,4 +50,13 @@ public class PlayersRepository implements Repository<Player>{
         query.uniqueResultOptional();
         return query.uniqueResultOptional();
     }
+
+
+    public Player saveOrGet(Player entity){
+        var optEntity = findByName(entity);
+        return optEntity.orElseGet(() -> save(entity));
+
+    }
+
+
 }
