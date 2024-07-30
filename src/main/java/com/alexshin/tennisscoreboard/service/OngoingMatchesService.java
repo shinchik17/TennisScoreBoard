@@ -13,15 +13,15 @@ import java.util.Map;
 import java.util.UUID;
 
 public class OngoingMatchesService {
-    private final Map<UUID, MatchDTO> matchesMap = new HashMap<>();
+    private final static Map<UUID, MatchDTO> matchesMap = new HashMap<>();
     private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
     private final PlayersRepository playersRepository = new PlayersRepository();
     private final ModelMapper mapper = new ModelMapper();
 
 
     public MatchDTO createNewMatch(String player1name, String player2name){
-        Player player1 = playersRepository.saveOrGet(mapper.map(player1name, Player.class));
-        Player player2 = playersRepository.saveOrGet(mapper.map(player2name, Player.class));
+        Player player1 = playersRepository.saveOrGet(new Player(player1name));
+        Player player2 = playersRepository.saveOrGet(new Player(player2name));
         MatchDTO match = new MatchDTO(player1, player2);
         match.setUuid(UUID.randomUUID());
         matchesMap.put(match.getUuid(), match);

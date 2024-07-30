@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FinishedMatchesPersistenceService {
     private final MatchesRepository matchesRepository = new MatchesRepository();
-    private final int PAGE_SIZE = 5;
+    public final int PAGE_SIZE = 5;
 
 
     public void saveMatch(Match match){
@@ -22,6 +22,8 @@ public class FinishedMatchesPersistenceService {
     public List<Match> findMatches(int pageNum) {
         return matchesRepository.findMatches(pageNum * PAGE_SIZE , PAGE_SIZE);
     }
+
+
 
 
 }
