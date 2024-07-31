@@ -42,6 +42,7 @@ public class MatchesServlet extends HttpServlet {
                 req.setAttribute("filter_by_player_name", optPlayerName.get());
             } else {
                 matches = finishedMatchesPersistenceService.findMatches(pageNum);
+//                req.setAttribute("filter_by_player_name", "");
             }
 
             logger.info("Got matches list, size = %d".formatted(matches.size()));

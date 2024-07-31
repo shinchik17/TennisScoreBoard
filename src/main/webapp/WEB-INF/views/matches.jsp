@@ -19,7 +19,13 @@
     <h1>Matches</h1>
     <form class="search-player-form" action="${pageContext.request.contextPath}/matches" method="get">
         <label for="search-player" id="search-label">Player: </label>
-        <input type="text" id="search-player" name="filter_by_player_name" placeholder="Enter player name">
+        <c:if test="${empty requestScope.filter_by_player_name}">
+            <input type="text" id="search-player" name="filter_by_player_name" placeholder="Enter player name">
+        </c:if>
+        <c:if test="${not empty requestScope.filter_by_player_name}">
+            <input type="text" id="search-player" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
+        </c:if>
+
         <button type="submit">Search</button>
         <button type="reset">Clear</button>
     </form>

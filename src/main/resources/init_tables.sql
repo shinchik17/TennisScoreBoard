@@ -11,6 +11,7 @@ INSERT INTO players (name) VALUES ('Casper Ruud');
 INSERT INTO players (name) VALUES ('Alex de Minaur');
 
 INSERT INTO matches (player1, player2, winner) VALUES (1, 2, 1);
+INSERT INTO matches (player1, player2, winner) VALUES (2, 11, 2);
 INSERT INTO matches (player1, player2, winner) VALUES (2, 3, 2);
 INSERT INTO matches (player1, player2, winner) VALUES (2, 1, 2);
 INSERT INTO matches (player1, player2, winner) VALUES (4, 3, 3);
