@@ -32,14 +32,14 @@ public class MatchesServlet extends HttpServlet {
 
         try {
             int pageNum = parsePageNum(req.getParameter("page"));
-            Optional<String> optPlayerName = parsePlayerFilter(req.getParameter("filter_by_player"));
+            Optional<String> optPlayerName = parsePlayerFilter(req.getParameter("filter_by_player_name"));
 
             logger.info("Page = %d, filter = '%s'".formatted(pageNum, optPlayerName.orElse("None")));
 
             List<Match> matches;
             if (optPlayerName.isPresent()) {
                 matches = finishedMatchesPersistenceService.findMatches(pageNum, optPlayerName.get());
-                req.setAttribute("filter", optPlayerName.get());
+                req.setAttribute("filter_by_player_name", optPlayerName.get());
             } else {
                 matches = finishedMatchesPersistenceService.findMatches(pageNum);
             }
@@ -48,10 +48,10 @@ public class MatchesServlet extends HttpServlet {
 
             req.setAttribute("matches", matches);
             req.setAttribute("page", pageNum);
-            req.setAttribute("maxPage", finishedMatchesPersistenceService.PAGE_SIZE);
+            req.setAttribute("max_row_num", finishedMatchesPersistenceService.PAGE_SIZE);
 
             req.getRequestDispatcher(JspHelper.getPath("matches")).forward(req, resp);
-            logger.info("Forwarded to match-score.jsp");
+            logger.info("Forwarded to matches.jsp");
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
             logger.error(e.getMessage());

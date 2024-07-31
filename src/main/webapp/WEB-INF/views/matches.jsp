@@ -17,9 +17,9 @@
 </nav>
 <div class="container">
     <h1>Matches</h1>
-    <form class="search-player-form" action="${pageContext.request.contextPath}/new-match" method="get">
+    <form class="search-player-form" action="${pageContext.request.contextPath}/matches" method="get">
         <label for="search-player" id="search-label">Player: </label>
-        <input type="text" id="search-player" name="search-player" placeholder="Enter player name" required>
+        <input type="text" id="search-player" name="filter_by_player_name" placeholder="Enter player name">
         <button type="submit">Search</button>
         <button type="reset">Clear</button>
     </form>
@@ -36,7 +36,7 @@
         <tbody>
         <c:forEach var="match" items="${requestScope.matches}" varStatus="idx">
             <tr>
-                <td><c:out value="${idx.count}"/></td>
+                <td id="idx"><c:out value="${idx.count + requestScope.max_row_num * (requestScope.page - 1)}"/></td>
                 <td><c:out value="${match.player1.name}"/></td>
                 <td><c:out value="${match.player2.name}"/></td>
                 <td><c:out value="${match.winner.name}"/></td>
@@ -46,21 +46,28 @@
     </table>
     <!-- TODO: make links instead of form -->
     <div class="pagination">
-        <c:if test="${requestScope.page > 1}">
-            <form class="prev-page"
-                  action="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}&filter_by_player_name=${requestScope.filter}"
-                  method="get">
-                <button type="submit">< Prev</button>
+            <form class="prev-page" action="${pageContext.request.contextPath}/matches" method="get">
+                <input type="hidden" name="page" value="${requestScope.page - 1}">
+                <input type="hidden" name="filter_by_player_nam" value="${requestScope.filter_by_player_name}">
+                <c:if test="${requestScope.page > 1}">
+                    <button type="submit">< Prev</button>
+                </c:if>
+                <c:if test="${requestScope.page < 2}">
+                    <button disabled type="submit">< Prev</button>
+                </c:if>
             </form>
-        </c:if>
+
         <p>${requestScope.page}</p>
-        <c:if test="${requestScope.page < requestScope.maxPage}">
-            <form class="next-page"
-                  action="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}&filter_by_player_name=${requestScope.filter}"
-                  method="get">
-                <button type="submit">Next ></button>
+            <form class="next-page" action="${pageContext.request.contextPath}/matches" method="get">
+                <input type="hidden" name="page" value="${requestScope.page + 1}">
+                <input type="hidden" name="filter_by_player_nam" value="${requestScope.filter}">
+                <c:if test="${requestScope.matches.size() == requestScope.max_row_num}">
+                    <button type="submit">Next ></button>
+                </c:if>
+                <c:if test="${requestScope.matches.size() < requestScope.max_row_num}">
+                    <button disabled type="submit">Next ></button>
+                </c:if>
             </form>
-        </c:if>
 
     </div>
 

@@ -40,13 +40,17 @@
         </tbody>
     </table>
     <div class="pagination">
-        <div class="prev-page">
-            <a href="${pageContext.request.contextPath}/matches?page=#&filter_by_player_name=#">< Prev</a>
-        </div>
+        <form class="prev-page" action="${pageContext.request.contextPath}/matches" method="get">
+            <input type="hidden" name="page" value="${requestScope.page - 1}">
+            <input type="hidden" name="filter_by_player_nam" value="${requestScope.filter_by_player_name}">
+            <button type="submit">< Prev</button>
+        </form>
         <p>1</p>
-        <div class="next-page">
-            <a href="${pageContext.request.contextPath}/matches?page=#&filter_by_player_name=#">Next ></a>
-        </div>
+        <form class="next-page" action="${pageContext.request.contextPath}/matches" method="get">
+            <input type="hidden" name="page" value="${requestScope.page + 1}">
+            <input type="hidden" name="filter_by_player_nam" value="${requestScope.filter}">
+            <button type="submit">Next ></button>
+        </form>
 
     </div>
 
