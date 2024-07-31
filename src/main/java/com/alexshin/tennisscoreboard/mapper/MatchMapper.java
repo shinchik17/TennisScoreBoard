@@ -25,13 +25,6 @@ public class MatchMapper extends ModelMapper {
 
         Converter<MatchDTO, MatchScoreModel> toScoreConverter = context -> {
             MatchDTO source = context.getSource();
-            String winner;
-            if (source.getWinner() == null) {
-                winner = "";
-            } else {
-                winner = source.getWinner().getName();
-            }
-
             return new MatchScoreModel(
                     source.getPlayer1().getName(),
                     source.getPlayer2().getName(),
@@ -41,7 +34,7 @@ public class MatchMapper extends ModelMapper {
                     String.valueOf(source.getPlayer2Game()),
                     getPlayerPointString(source, 1),
                     getPlayerPointString(source, 2),
-                    winner,
+                    Optional.ofNullable(source.getWinner()).map(Player::getName).orElse(""),
                     source.getUuid().toString()
                     );
         };

@@ -27,8 +27,7 @@ public class MatchMapperTest {
         matchEntity.setPlayer2(player2);
         matchEntity.setWinner(player1);
 
-        matchDTO = new MatchDTO(player1, player2);
-        matchDTO.setUuid(UUID.randomUUID());
+        matchDTO = new MatchDTO(player1, player2, UUID.randomUUID());
         matchDTO.setPlayerSet(1, 1);
         matchDTO.setPlayerGame(1, 2);
         matchDTO.setPlayerGame(2, 4);
@@ -36,24 +35,23 @@ public class MatchMapperTest {
         matchDTO.setPlayerPoint(1, 41);
         matchDTO.setPlayerPoint(2, 40);
         matchDTO.setWinnerByNum(1);
-
     }
 
     @Test
     void entityToDTO() {
         MatchDTO matchDTO = mapper.toDTO(matchEntity);
-        assertEquals(matchEntity.getPlayer1().getName(), matchDTO.getPlayer1().getName());
-        assertEquals(matchEntity.getPlayer2().getName(), matchDTO.getPlayer2().getName());
-        assertEquals(matchEntity.getWinner().getName(), matchDTO.getWinner().getName());
+        assertEquals(matchEntity.getPlayer1(), matchDTO.getPlayer1());
+        assertEquals(matchEntity.getPlayer2(), matchDTO.getPlayer2());
+        assertEquals(matchEntity.getWinner(), matchDTO.getWinner());
     }
 
     @Test
     void dtoToEntity() {
         var tempEntity = mapper.toEntity(matchDTO);
 
-        assertEquals(tempEntity.getPlayer1().getName(), matchDTO.getPlayer1().getName());
-        assertEquals(tempEntity.getPlayer2().getName(), matchDTO.getPlayer2().getName());
-        assertEquals(tempEntity.getWinner().getName(), matchDTO.getWinner().getName());
+        assertEquals(tempEntity.getPlayer1(), matchDTO.getPlayer1());
+        assertEquals(tempEntity.getPlayer2(), matchDTO.getPlayer2());
+        assertEquals(tempEntity.getWinner(), matchDTO.getWinner());
     }
 
     @Test
@@ -62,7 +60,6 @@ public class MatchMapperTest {
 
         assertEquals(matchDTO.getPlayer1().getName(), matchScore.getPlayer1());
         assertEquals(matchDTO.getPlayer2().getName(), matchScore.getPlayer2());
-        assertEquals(matchDTO.getWinner().getName(), matchScore.getWinner());
         assertEquals(String.valueOf(matchDTO.getPlayer1Set()), matchScore.getPlayer1Set());
         assertEquals(String.valueOf(matchDTO.getPlayer1Set()), matchScore.getPlayer1Set());
         assertEquals(String.valueOf(matchDTO.getPlayer1Game()), matchScore.getPlayer1Game());
@@ -71,6 +68,11 @@ public class MatchMapperTest {
         assertEquals(getPlayerPointString(matchDTO, 2), matchScore.getPlayer2Point());
         assertEquals(matchDTO.getUuid().toString(), matchScore.getUuid());
 
+        if (matchDTO.getWinner() == null) {
+            assertEquals("", matchScore.getWinner());
+        } else {
+            assertEquals(matchDTO.getWinner().getName(), matchScore.getWinner());
+        }
 
 
     }

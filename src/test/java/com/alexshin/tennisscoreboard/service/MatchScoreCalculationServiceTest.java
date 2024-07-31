@@ -6,6 +6,8 @@ import com.alexshin.tennisscoreboard.model.entity.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 import static  org.junit.jupiter.api.Assertions.*;
 import static com.alexshin.tennisscoreboard.service.MatchScoreCalculationService.*;
 
@@ -18,8 +20,7 @@ public class MatchScoreCalculationServiceTest {
     @BeforeEach
     void prepare(){
         scoreCalculationService = new MatchScoreCalculationService();
-        match = new MatchDTO(new Player("Player1"), new Player("Player2"));
-        //TODO: не нужно ли избавиться от PlayerModel в проекте в целом?
+        match = new MatchDTO(new Player("Player1"), new Player("Player2"), UUID.randomUUID());
     }
 
     @Test

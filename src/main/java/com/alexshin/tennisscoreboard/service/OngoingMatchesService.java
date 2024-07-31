@@ -22,8 +22,7 @@ public class OngoingMatchesService {
     public MatchDTO createNewMatch(String player1name, String player2name){
         Player player1 = playersRepository.saveOrGet(new Player(player1name));
         Player player2 = playersRepository.saveOrGet(new Player(player2name));
-        MatchDTO match = new MatchDTO(player1, player2);
-        match.setUuid(UUID.randomUUID());
+        MatchDTO match = new MatchDTO(player1, player2, UUID.randomUUID());
         matchesMap.put(match.getUuid(), match);
         return match;
     }

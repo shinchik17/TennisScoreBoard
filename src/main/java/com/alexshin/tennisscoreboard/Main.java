@@ -1,23 +1,11 @@
 package com.alexshin.tennisscoreboard;
 
 
-import com.alexshin.tennisscoreboard.mapper.MatchMapper;
-import com.alexshin.tennisscoreboard.model.MatchScoreModel;
 import com.alexshin.tennisscoreboard.model.dto.MatchDTO;
-import com.alexshin.tennisscoreboard.model.entity.Match;
 import com.alexshin.tennisscoreboard.model.entity.Player;
-import com.alexshin.tennisscoreboard.repository.MatchesRepository;
-import com.alexshin.tennisscoreboard.repository.PlayersRepository;
-import com.alexshin.tennisscoreboard.service.FinishedMatchesPersistenceService;
-import com.alexshin.tennisscoreboard.service.MatchScoreCalculationService;
-import org.modelmapper.ModelMapper;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static com.alexshin.tennisscoreboard.util.ParseParams.parsePageNum;
-import static com.alexshin.tennisscoreboard.util.ParseParams.parsePlayerFilter;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,35 +13,31 @@ public class Main {
 
         Player player1 = new Player("Alkaras");
         Player player2 = new Player("Medvedev");
-        MatchDTO match = new MatchDTO(player1, player2);
-        match.setUuid(UUID.randomUUID());
-        MatchMapper mapper = new MatchMapper();
-
-        MatchScoreModel matchScore = mapper.toScoreModel(match);
-        System.out.println();
-
-
-//        var playersReository = new PlayersRepository();
-//        var matchesReository = new MatchesRepository();
-//        FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
-//        List<Match> matches = finishedMatchesPersistenceService.findMatches(1);
-//        System.out.println(" ");
-//        playersReository.save(player1);
-//        playersReository.saveOrGet(player2);
+        MatchDTO match = new MatchDTO(player1, player2, UUID.randomUUID());
+        match.setWinnerByNum(1);
+//        MatchMapper mapper = new MatchMapper();
 //
-//        match.setWinnerByNum(1);
+//        MatchScoreModel matchScore = mapper.toScoreModel(match);
 //
-//
-////        var scoreService = new MatchScoreCalculationService();
-//        var modelMapper = new ModelMapper();
-//        var matchEntity = modelMapper.map(match, Match.class);
-//
-//
-//        matchesReository.save(matchEntity);
-//        System.out.println(matchEntity);
+//        ModelMapper modelMapper = new ModelMapper();
+//        Player player = new Player("kek");
+//        System.out.println();
 
+        var source = match;
+        String winner;
+        if (source.getWinner() == null) {
+            winner = "";
+        } else {
+            winner = source.getWinner().getName();
+        }
 
-
+        String winner2 = source.getWinner() == null ? "" : source.getWinner().getName();
+        String winner3 = Optional.ofNullable(source.getWinner())
+                .map(Player::getName)
+                .orElse("");
+        System.out.println(winner);
+        System.out.println(winner2);
+        System.out.println(winner3);
 
 
     }

@@ -3,6 +3,7 @@ package com.alexshin.tennisscoreboard.model.dto;
 import com.alexshin.tennisscoreboard.model.entity.Player;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.UUID;
@@ -29,9 +30,10 @@ public class MatchDTO {
 
     private UUID uuid;
 
-    public MatchDTO(Player player1, Player player2) {
+    public MatchDTO(Player player1, Player player2, UUID uuid) {
         this.player1 = player1;
         this.player2 = player2;
+        this.uuid = uuid;
     }
 
     public int getPlayerPoint(int playerNum) {
