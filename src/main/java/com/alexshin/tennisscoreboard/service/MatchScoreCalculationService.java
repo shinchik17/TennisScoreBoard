@@ -44,7 +44,7 @@ public class MatchScoreCalculationService {
                 return;
             case SECOND_POINT:
                 match.setPlayerPoint(playerNum, THIRD_POINT);
-                return; // TODO: default?
+                return;
             case ADVANTAGE:
                 addGame(match, playerNum);
                 return;

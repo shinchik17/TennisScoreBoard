@@ -54,8 +54,9 @@ public class MatchesServlet extends HttpServlet {
             logger.info("Forwarded to match-score.jsp");
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
-            // TODO: error.jsp
-            throw new RuntimeException(e);
+            logger.error(e.getMessage());
+            req.setAttribute("error_info", e.getMessage());
+            req.getRequestDispatcher(JspHelper.getPath("error")).forward(req, resp);
         }
 
 

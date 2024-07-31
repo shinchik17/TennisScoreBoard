@@ -49,7 +49,9 @@ public class NewMatchServlet extends HttpServlet {
             logger.info("Redirected to /match-score");
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            logger.error(e.getMessage());
+            req.setAttribute("error_info", e.getMessage());
+            req.getRequestDispatcher(JspHelper.getPath("error")).forward(req, resp);
         }
 
 

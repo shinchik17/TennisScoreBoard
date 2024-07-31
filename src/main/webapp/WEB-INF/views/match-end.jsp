@@ -15,7 +15,7 @@
     </ul>
 </nav>
 <div class="container">
-    <h1 class="winner">${requestScope.matchScore.winner.name} won</h1>
+    <h1 class="winner">${requestScope.matchScore.winner} won</h1>
     <div class="final-table-container">
         <table>
             <thead>

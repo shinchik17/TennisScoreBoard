@@ -29,7 +29,7 @@ body {
 h1 {
     border: 5px solid red;
     text-align: center;
-    margin: 0.3em auto 0.5em;
+    margin: 0.3em auto 0.3em;
     font-size: 5rem;
     color: white;
     text-shadow: 0.3rem 0.1rem 0.2rem var(--active-btn-blue);
@@ -99,7 +99,7 @@ h1 {
     text-shadow: 0.2rem 0.1rem 0.2rem var(--active-btn-blue);
 }
 
-.pagination form, .pagination p {
+.pagination form, .pagination p, .error {
     border: 2px solid #6fff0f;
     margin: 0;
     padding: 0 5px;
@@ -154,7 +154,7 @@ table button {
     padding: 10px;
 }
 
-.search-player-form button, .pagination button, .pagination p {
+.search-player-form button, .pagination button, .pagination p, .error {
     font-size: 1.5rem;
     text-shadow: 0.2rem 0.1rem 0.2rem var(--active-btn-blue);
     padding: 10px 20px;

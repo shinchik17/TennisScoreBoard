@@ -35,12 +35,14 @@ public class MatchScoreServlet extends HttpServlet {
             MatchDTO match = ongoingMatchesService.getCurrentMatch(uuid);
 
             req.setAttribute("matchScore", mapper.toScoreModel(match));
+            req.setAttribute("uuid", uuid);
             req.getRequestDispatcher(JspHelper.getPath("match-score")).forward(req, resp);
             logger.info("Forwarded to match-score.jsp");
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
-            logger.error(e);
-            // TODO: error.jsp
+            logger.error(e.getMessage());
+            req.setAttribute("error_info", e.getMessage());
+            req.getRequestDispatcher(JspHelper.getPath("error")).forward(req, resp);
         }
 
     }
@@ -52,7 +54,7 @@ public class MatchScoreServlet extends HttpServlet {
         try {
 
             UUID uuid = parseUUID(req.getParameter("uuid"));
-            int wonPointPlayerNum = parsePlayerNum(req.getParameter("playerWonNum"));
+            int wonPointPlayerNum = parsePlayerNum(req.getParameter("player-won-num"));
             MatchDTO match = ongoingMatchesService.getCurrentMatch(uuid);
             logger.info("Got match with uuid=" + match.getUuid());
 
@@ -75,8 +77,9 @@ public class MatchScoreServlet extends HttpServlet {
             logger.info("Redirected to /match-score");
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
-            // TODO: error.jsp
-            throw new RuntimeException(e);
+            logger.error(e.getMessage());
+            req.setAttribute("error_info", e.getMessage());
+            req.getRequestDispatcher(JspHelper.getPath("error")).forward(req, resp);
         }
 
 

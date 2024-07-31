@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"  %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,24 +36,28 @@
         <tbody>
         <c:forEach var="match" items="${requestScope.matches}" varStatus="idx">
             <tr>
-                <td>${idx}</td>
-                <td><c:out value="${match.player1}"/></td>
-                <td><c:out value="${match.player2}"/></td>
-                <td><c:out value="${match.winner}"/></td>
+                <td><c:out value="${idx.count}"/></td>
+                <td><c:out value="${match.player1.name}"/></td>
+                <td><c:out value="${match.player2.name}"/></td>
+                <td><c:out value="${match.winner.name}"/></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+    <!-- TODO: make links instead of form -->
     <div class="pagination">
         <c:if test="${requestScope.page > 1}">
-            <form class="prev-page" action="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}&filter_by_player_name=${requestScope.filter}" method="get">
+            <form class="prev-page"
+                  action="${pageContext.request.contextPath}/matches?page=${requestScope.page - 1}&filter_by_player_name=${requestScope.filter}"
+                  method="get">
                 <button type="submit">< Prev</button>
             </form>
         </c:if>
         <p>${requestScope.page}</p>
         <c:if test="${requestScope.page < requestScope.maxPage}">
             <form class="next-page"
-                  action="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}&filter_by_player_name=${requestScope.filter}" method="get">
+                  action="${pageContext.request.contextPath}/matches?page=${requestScope.page + 1}&filter_by_player_name=${requestScope.filter}"
+                  method="get">
                 <button type="submit">Next ></button>
             </form>
         </c:if>

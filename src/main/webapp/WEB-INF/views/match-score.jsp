@@ -35,7 +35,7 @@
                 <td>${requestScope.matchScore.player1Game}</td>
                 <td>${requestScope.matchScore.player1Point}</td>
                 <td><form action="${pageContext.request.contextPath}/match-score?uuid=${requestScope.uuid}" method="post">
-                    <button class="player-win-point-btn" name="playerWonNum" value="1" type="submit">Add point</button>
+                    <button class="player-win-point-btn" name="player-won-num" value="1" type="submit">Add point</button>
                 </form></td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
                 <td>${requestScope.matchScore.player2Game}</td>
                 <td>${requestScope.matchScore.player2Point}</td>
                 <td><form action="${pageContext.request.contextPath}/match-score?uuid=${requestScope.uuid}" method="post">
-                    <button class="player-win-point-btn" name="playerWonNum" value="2" type="submit">Add point</button>
+                    <button class="player-win-point-btn" name="player-won-num" value="2" type="submit">Add point</button>
                 </form></td>
             </tr>
 

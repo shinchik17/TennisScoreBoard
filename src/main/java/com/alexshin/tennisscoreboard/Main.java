@@ -23,21 +23,21 @@ public class Main {
 //        Player player = new Player("kek");
 //        System.out.println();
 
-        var source = match;
-        String winner;
-        if (source.getWinner() == null) {
-            winner = "";
-        } else {
-            winner = source.getWinner().getName();
-        }
-
-        String winner2 = source.getWinner() == null ? "" : source.getWinner().getName();
-        String winner3 = Optional.ofNullable(source.getWinner())
-                .map(Player::getName)
-                .orElse("");
-        System.out.println(winner);
-        System.out.println(winner2);
-        System.out.println(winner3);
+//        var source = match;
+//        String winner;
+//        if (source.getWinner() == null) {
+//            winner = "";
+//        } else {
+//            winner = source.getWinner().getName();
+//        }
+//
+//        String winner2 = source.getWinner() == null ? "" : source.getWinner().getName();
+//        String winner3 = Optional.ofNullable(source.getWinner())
+//                .map(Player::getName)
+//                .orElse("");
+//        System.out.println(winner);
+//        System.out.println(winner2);
+//        System.out.println(winner3);
 
 
     }
