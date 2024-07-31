@@ -11,19 +11,17 @@ public class FinishedMatchesPersistenceService {
     public final int PAGE_SIZE = 5;
 
 
-    public void saveMatch(Match match){
+    public void saveMatch(Match match) {
         matchesRepository.save(match);
     }
 
     public List<Match> findMatches(int pageNum, String playerName) {
-        return matchesRepository.findMatches(pageNum * PAGE_SIZE , PAGE_SIZE, playerName);
+        return matchesRepository.findMatches((pageNum - 1) * PAGE_SIZE, PAGE_SIZE, playerName);
     }
 
     public List<Match> findMatches(int pageNum) {
-        return matchesRepository.findMatches(pageNum * PAGE_SIZE , PAGE_SIZE);
+        return matchesRepository.findMatches((pageNum - 1) * PAGE_SIZE, PAGE_SIZE);
     }
-
-
 
 
 }
