@@ -73,11 +73,7 @@ h1 {
 }
 
 
-
-
-
-
-    /* Forms */
+/* Forms */
 .new-match-form {
     border: 5px solid #00ff0d;
     text-align: left;
@@ -106,12 +102,10 @@ h1 {
 }
 
 
-
-
 /* Text input style*/
 input[type="text"] {
     display: block;
-    border-radius: 10px;
+    border-radius: 15px;
     border: none;
     outline-color: var(--std-btn-blue);
     margin: 5px auto;
@@ -165,11 +159,11 @@ table button {
     margin: 0 10px;
     max-width: none;
 }
+
 .search-player-form button, .search-player-form label {
     margin: 0 5px;
     padding: 10px;
 }
-
 
 
 /* Navigation bar style */
@@ -225,10 +219,48 @@ td, th {
     margin: 1rem auto;
 }
 
-.matches-table td, .matches-table th {
+.matches-table th {
     font-size: 2rem;
 }
 
+.matches-table td {
+    font-size: 1.5rem;
+    /*text-align: left;*/
+}
+
+
+/* Pagination */
+.pagination div {
+    display: flex;
+    font-size: 1.5rem;
+    text-shadow: 0.2rem 0.1rem 0.2rem var(--active-btn-blue);
+    color: white;
+    border: 0;
+    border-radius: 1.5rem;
+    background-color: var(--std-btn-blue);
+    box-shadow: 0.2rem 0.1rem 0.2rem var(--active-btn-blue);
+    /*margin: 10px auto;*/
+    /*padding: 10px 20px;*/
+}
+
+.pagination a {
+    border: 1px solid red;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+.pagination div:hover {
+    background-color: var(--hover-btn-blue);
+}
+
+.pagination a:active {
+    background-color: var(--active-btn-blue);
+}
+
+.matches-table td:not([id='idx']) {
+    text-align: left;
+    padding: 0 5px;
+}
 
 
 /* Funny footer style */
