@@ -48,7 +48,7 @@
     <div class="pagination">
             <form class="prev-page" action="${pageContext.request.contextPath}/matches" method="get">
                 <input type="hidden" name="page" value="${requestScope.page - 1}">
-                <input type="hidden" name="filter_by_player_nam" value="${requestScope.filter_by_player_name}">
+                <input type="hidden" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
                 <c:if test="${requestScope.page > 1}">
                     <button type="submit">< Prev</button>
                 </c:if>
@@ -60,7 +60,7 @@
         <p>${requestScope.page}</p>
             <form class="next-page" action="${pageContext.request.contextPath}/matches" method="get">
                 <input type="hidden" name="page" value="${requestScope.page + 1}">
-                <input type="hidden" name="filter_by_player_nam" value="${requestScope.filter}">
+                <input type="hidden" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
                 <c:if test="${requestScope.matches.size() == requestScope.max_row_num}">
                     <button type="submit">Next ></button>
                 </c:if>
