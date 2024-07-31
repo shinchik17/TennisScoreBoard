@@ -55,7 +55,10 @@ public class ParseParams {
         if (playerName != null) {
             if (isValidPlayerFilter(playerName)) {
                 return Optional.of(playerName);
-            } else {
+            } else if (playerName.isEmpty() || playerName.isBlank()) {
+                return Optional.empty();
+            }
+            else {
                 throw new IllegalPlayerFilterException(playerName);
             }
         }
