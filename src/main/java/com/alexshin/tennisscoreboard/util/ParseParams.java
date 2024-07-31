@@ -30,7 +30,7 @@ public class ParseParams {
 
 
     public static int parsePlayerNum(String playerNum) {
-        if (isValidUuid(playerNum)) {
+        if (isValidPlayerNum(playerNum)) {
             return Integer.parseInt(playerNum);
         } else {
             throw new IllegalPlayerNumException(playerNum);
