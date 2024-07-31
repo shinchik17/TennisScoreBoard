@@ -45,7 +45,7 @@ public class MatchesRepository implements Repository<Match> {
     // TODO: naming
     public List<Match> findMatches(int start, int amount, String playerName) {
         @Cleanup var session = sessionFactory.openSession();
-        Query<Match> query = session.createQuery("FROM Match WHERE player1.name = :name OR player2.name = :name", Match.class);
+        Query<Match> query = session.createQuery("FROM Match WHERE player1.name = :name OR player2.name = :name ORDER BY id DESC", Match.class);
         query.setParameter("name", playerName);
         query.setFirstResult(start);
         query.setMaxResults(amount);
@@ -55,7 +55,7 @@ public class MatchesRepository implements Repository<Match> {
     // TODO: naming
     public List<Match> findMatches(int start, int amount) {
         @Cleanup var session = sessionFactory.openSession();
-        Query<Match> query = session.createQuery("FROM Match", Match.class);
+        Query<Match> query = session.createQuery("FROM Match ORDER BY id DESC", Match.class);
         query.setFirstResult(start);
         query.setMaxResults(amount);
         return query.getResultList();
