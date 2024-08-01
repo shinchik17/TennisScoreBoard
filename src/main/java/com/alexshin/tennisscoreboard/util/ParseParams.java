@@ -41,7 +41,7 @@ public class ParseParams {
 
         if (pageNum != null) {
             if (isValidPageNumStr(pageNum)) {
-                return Integer.parseInt(pageNum);
+                return Math.max(Integer.parseInt(pageNum), DEFAULT_PAGE);
             } else {
                 throw new IllegalPageNumException(pageNum);
             }
