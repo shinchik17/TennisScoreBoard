@@ -4,8 +4,6 @@ package com.alexshin.tennisscoreboard.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-// TODO: есть инфа, что связка lombok @Data + JPA имеет траблы (из-за генерящегося в БД id вроде бы),
-//  с equals и hashcode та же трабла, чекнуть потом
 @Getter
 @Setter
 @NoArgsConstructor

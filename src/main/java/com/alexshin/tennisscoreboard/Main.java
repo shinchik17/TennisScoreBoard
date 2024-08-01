@@ -1,14 +1,10 @@
 package com.alexshin.tennisscoreboard;
 
 
-import com.alexshin.tennisscoreboard.model.dto.MatchDTO;
 import com.alexshin.tennisscoreboard.model.entity.Match;
-import com.alexshin.tennisscoreboard.model.entity.Player;
 import com.alexshin.tennisscoreboard.repository.MatchesRepository;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,7 +19,7 @@ public class Main {
         String NAME_FILTER_VALIDATE_PATTERN = "[a-zA-zА-Яа-я ]";
         MatchesRepository matchesRepository = new MatchesRepository();
 
-        List<Match> matches = matchesRepository.findMatches(1, 15, "Carlos Alcaraz");
+        List<Match> matches = matchesRepository.findMatchesByPlayerName(1, 15, "Carlos Alcaraz");
         System.out.println(matches);
 
 

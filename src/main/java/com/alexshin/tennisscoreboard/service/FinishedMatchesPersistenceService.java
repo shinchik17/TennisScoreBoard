@@ -16,7 +16,7 @@ public class FinishedMatchesPersistenceService {
     }
 
     public List<Match> findMatches(int pageNum, String playerName) {
-        return matchesRepository.findMatches((pageNum - 1) * PAGE_SIZE, PAGE_SIZE, playerName);
+        return matchesRepository.findMatchesByPlayerName((pageNum - 1) * PAGE_SIZE, PAGE_SIZE, playerName);
     }
 
     public List<Match> findMatches(int pageNum) {

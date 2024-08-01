@@ -2,7 +2,6 @@ package com.alexshin.tennisscoreboard.repository;
 
 
 import com.alexshin.tennisscoreboard.model.entity.Match;
-import com.alexshin.tennisscoreboard.model.entity.Player;
 import com.alexshin.tennisscoreboard.util.HibernateUtil;
 import lombok.Cleanup;
 import org.hibernate.SessionFactory;
@@ -42,8 +41,7 @@ public class MatchesRepository implements Repository<Match> {
         return Optional.of(session.find(Match.class, id));
     }
 
-    // TODO: naming
-    public List<Match> findMatches(int start, int amount, String playerName) {
+    public List<Match> findMatchesByPlayerName(int start, int amount, String playerName) {
         @Cleanup var session = sessionFactory.openSession();
         Query<Match> query = session.createQuery("FROM Match WHERE player1.name = :name OR player2.name = :name ORDER BY id DESC", Match.class);
         query.setParameter("name", playerName);
@@ -52,7 +50,6 @@ public class MatchesRepository implements Repository<Match> {
         return query.getResultList();
     }
 
-    // TODO: naming
     public List<Match> findMatches(int start, int amount) {
         @Cleanup var session = sessionFactory.openSession();
         Query<Match> query = session.createQuery("FROM Match ORDER BY id DESC", Match.class);
