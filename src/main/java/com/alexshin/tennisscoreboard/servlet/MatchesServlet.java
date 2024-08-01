@@ -31,8 +31,14 @@ public class MatchesServlet extends HttpServlet {
         logger.info("Received GET on /matches");
 
         try {
+
             int pageNum = parsePageNum(req.getParameter("page"));
             Optional<String> optPlayerName = parsePlayerFilter(req.getParameter("filter_by_player_name"));
+
+            // костыль, чтобы сбрасывать value в input filter by name
+            if (req.getParameter("reset") != null) {
+                optPlayerName = Optional.empty();
+            }
 
             logger.info("Page = %d, filter = '%s'".formatted(pageNum, optPlayerName.orElse("None")));
 

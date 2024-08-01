@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"  %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,13 +21,17 @@
         <label for="search-player" id="search-label">Player: </label>
         <c:if test="${empty requestScope.filter_by_player_name}">
             <input type="text" id="search-player" name="filter_by_player_name" placeholder="Enter player name">
+            <button type="submit">Search</button>
+            <button type="reset">Clear</button>
         </c:if>
         <c:if test="${not empty requestScope.filter_by_player_name}">
             <input type="text" id="search-player" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
+            <button type="submit">Search</button>
+            <form>
+                <input type="hidden" name="reset" value="true">
+                <button type="submit">Clear</button>
+            </form>
         </c:if>
-
-        <button type="submit">Search</button>
-        <button type="reset">Clear</button>
     </form>
     <table class="matches-table">
         <thead>
@@ -51,28 +55,28 @@
         </tbody>
     </table>
     <div class="pagination">
-            <form class="prev-page" action="${pageContext.request.contextPath}/matches" method="get">
-                <input type="hidden" name="page" value="${requestScope.page - 1}">
-                <input type="hidden" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
-                <c:if test="${requestScope.page > 1}">
-                    <button type="submit">< Prev</button>
-                </c:if>
-                <c:if test="${requestScope.page < 2}">
-                    <button disabled type="submit">< Prev</button>
-                </c:if>
-            </form>
+        <form class="prev-page" action="${pageContext.request.contextPath}/matches" method="get">
+            <input type="hidden" name="page" value="${requestScope.page - 1}">
+            <input type="hidden" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
+            <c:if test="${requestScope.page > 1}">
+                <button type="submit">< Prev</button>
+            </c:if>
+            <c:if test="${requestScope.page < 2}">
+                <button disabled type="submit">< Prev</button>
+            </c:if>
+        </form>
 
         <p>${requestScope.page}</p>
-            <form class="next-page" action="${pageContext.request.contextPath}/matches" method="get">
-                <input type="hidden" name="page" value="${requestScope.page + 1}">
-                <input type="hidden" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
-                <c:if test="${requestScope.matches.size() == requestScope.max_row_num}">
-                    <button type="submit">Next ></button>
-                </c:if>
-                <c:if test="${requestScope.matches.size() < requestScope.max_row_num}">
-                    <button disabled type="submit">Next ></button>
-                </c:if>
-            </form>
+        <form class="next-page" action="${pageContext.request.contextPath}/matches" method="get">
+            <input type="hidden" name="page" value="${requestScope.page + 1}">
+            <input type="hidden" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
+            <c:if test="${requestScope.matches.size() == requestScope.max_row_num}">
+                <button type="submit">Next ></button>
+            </c:if>
+            <c:if test="${requestScope.matches.size() < requestScope.max_row_num}">
+                <button disabled type="submit">Next ></button>
+            </c:if>
+        </form>
 
     </div>
 
