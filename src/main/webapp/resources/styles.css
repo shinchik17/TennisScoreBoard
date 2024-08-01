@@ -22,7 +22,7 @@
 
 /* Body */
 body {
-    border: 5px solid black;
+    /*border: 5px solid black;*/
     font-size: 3rem;
     background: var(--main-background);
     margin: 0 auto;
@@ -34,7 +34,7 @@ body {
 
 /* Header style */
 h1 {
-    border: 5px solid red;
+    /*border: 5px solid red;*/
     text-align: center;
     margin: 0.3em auto 0.3em;
     font-size: 5rem;
@@ -47,7 +47,7 @@ h1 {
 
 /* Div styles */
 .container {
-    border: 5px solid purple;
+    /*border: 5px solid purple;*/
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -58,7 +58,7 @@ h1 {
 }
 
 .table-container, .final-table-container {
-    border: 5px solid #ff0ff3;
+    /*border: 5px solid #ff0ff3;*/
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -67,13 +67,13 @@ h1 {
 }
 
 .end-match-menu {
-    border: 3px solid greenyellow;
+    /*border: 3px solid greenyellow;*/
     display: flex;
     margin: 0 auto;
 }
 
 .pagination {
-    border: 3px solid orange;
+    /*border: 3px solid orange;*/
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -86,7 +86,7 @@ h1 {
 
 /* Forms */
 form {
-    border: 5px solid #00ff0d;
+    /*border: 5px solid #00ff0d;*/
     margin: 0 auto;
     display: flex;
 }
