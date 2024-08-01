@@ -1,18 +1,17 @@
-package com.alexshin.tennisscoreboard.model.dto;
+package com.alexshin.tennisscoreboard.model;
 
 import com.alexshin.tennisscoreboard.model.entity.Player;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.UUID;
 
-
+// TODO: rename to Model
 @Getter
 @NoArgsConstructor
 @Setter
-public class MatchDTO {
+public class MatchModel {
 
     private Player player1;
     private Player player2;
@@ -30,7 +29,7 @@ public class MatchDTO {
 
     private UUID uuid;
 
-    public MatchDTO(Player player1, Player player2, UUID uuid) {
+    public MatchModel(Player player1, Player player2, UUID uuid) {
         this.player1 = player1;
         this.player2 = player2;
         this.uuid = uuid;

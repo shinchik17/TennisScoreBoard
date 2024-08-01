@@ -1,8 +1,8 @@
-package com.alexshin.tennisscoreboard.controller;
+package com.alexshin.tennisscoreboard.servlet;
 
 import com.alexshin.tennisscoreboard.exception.NoSuchMatchException;
 import com.alexshin.tennisscoreboard.mapper.MatchMapper;
-import com.alexshin.tennisscoreboard.model.dto.MatchDTO;
+import com.alexshin.tennisscoreboard.model.MatchModel;
 import com.alexshin.tennisscoreboard.service.MatchScoreCalculationService;
 import com.alexshin.tennisscoreboard.service.OngoingMatchesService;
 import com.alexshin.tennisscoreboard.util.JspHelper;
@@ -32,9 +32,9 @@ public class MatchScoreServlet extends HttpServlet {
         logger.info("Received GET on /match-score");
         try {
             UUID uuid = parseUUID(req.getParameter("uuid"));
-            MatchDTO match = ongoingMatchesService.getCurrentMatch(uuid);
+            MatchModel match = ongoingMatchesService.getCurrentMatch(uuid);
 
-            req.setAttribute("matchScore", mapper.toScoreModel(match));
+            req.setAttribute("matchScore", mapper.toScoreDto(match));
             req.setAttribute("uuid", uuid);
             req.getRequestDispatcher(JspHelper.getPath("match-score")).forward(req, resp);
             logger.info("Forwarded to match-score.jsp");
@@ -55,7 +55,7 @@ public class MatchScoreServlet extends HttpServlet {
 
             UUID uuid = parseUUID(req.getParameter("uuid"));
             int wonPointPlayerNum = parsePlayerNum(req.getParameter("player-won-num"));
-            MatchDTO match = ongoingMatchesService.getCurrentMatch(uuid);
+            MatchModel match = ongoingMatchesService.getCurrentMatch(uuid);
             logger.info("Got match with uuid=" + match.getUuid());
 
             matchScoreCalculationService.updateMatchScore(match, wonPointPlayerNum);
@@ -64,7 +64,7 @@ public class MatchScoreServlet extends HttpServlet {
             if (MatchScoreCalculationService.isMatchFinished(match)) {
                 ongoingMatchesService.saveMatch(match);
 
-                req.setAttribute("matchScore", mapper.toScoreModel(match));
+                req.setAttribute("matchScore", mapper.toScoreDto(match));
 
                 req.getRequestDispatcher(JspHelper.getPath("match-end")).forward(req, resp);
                 logger.info("Forwarded to match-end.jsp");

@@ -1,4 +1,4 @@
-package com.alexshin.tennisscoreboard.model;
+package com.alexshin.tennisscoreboard.model.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MatchScoreModel {
+public class MatchScoreDTO {
 
     private String player1;
     private String player2;

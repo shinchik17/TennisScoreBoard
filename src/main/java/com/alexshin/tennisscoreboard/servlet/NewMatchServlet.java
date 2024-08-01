@@ -1,7 +1,6 @@
-package com.alexshin.tennisscoreboard.controller;
+package com.alexshin.tennisscoreboard.servlet;
 
-import com.alexshin.tennisscoreboard.model.dto.MatchDTO;
-import com.alexshin.tennisscoreboard.model.entity.Match;
+import com.alexshin.tennisscoreboard.model.MatchModel;
 import com.alexshin.tennisscoreboard.service.OngoingMatchesService;
 import com.alexshin.tennisscoreboard.util.JspHelper;
 import jakarta.servlet.ServletException;
@@ -11,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.modelmapper.ModelMapper;
 
 import java.io.IOException;
 
@@ -41,7 +39,7 @@ public class NewMatchServlet extends HttpServlet {
             String player2Name = parsePlayerName(req.getParameter("player2-name"));
 
 
-            MatchDTO match = ongoingMatchesService.createNewMatch(player1Name, player2Name);
+            MatchModel match = ongoingMatchesService.createNewMatch(player1Name, player2Name);
             logger.info("Got match with uuid=" + match.getUuid());
 
             String redirectURL = "%s/match-score?uuid=%s".formatted(req.getContextPath(), match.getUuid());

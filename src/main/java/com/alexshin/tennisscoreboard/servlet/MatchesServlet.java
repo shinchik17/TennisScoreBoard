@@ -1,4 +1,4 @@
-package com.alexshin.tennisscoreboard.controller;
+package com.alexshin.tennisscoreboard.servlet;
 
 import com.alexshin.tennisscoreboard.exception.NoSuchMatchException;
 import com.alexshin.tennisscoreboard.mapper.MatchMapper;
@@ -42,7 +42,6 @@ public class MatchesServlet extends HttpServlet {
                 req.setAttribute("filter_by_player_name", optPlayerName.get());
             } else {
                 matches = finishedMatchesPersistenceService.findMatches(pageNum);
-//                req.setAttribute("filter_by_player_name", "");
             }
 
             logger.info("Got matches list, size = %d".formatted(matches.size()));

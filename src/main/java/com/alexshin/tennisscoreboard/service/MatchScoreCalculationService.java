@@ -1,6 +1,7 @@
 package com.alexshin.tennisscoreboard.service;
 
-import com.alexshin.tennisscoreboard.model.dto.MatchDTO;;
+import com.alexshin.tennisscoreboard.model.MatchModel;
+;
 
 public class MatchScoreCalculationService {
     public static final int NUM_SETS_TO_WIN = 2;
@@ -21,7 +22,7 @@ public class MatchScoreCalculationService {
     }
 
 
-    public void updateMatchScore(MatchDTO match, int playerNum) {
+    public void updateMatchScore(MatchModel match, int playerNum) {
 
         if (isTieBreak(match)){
             processTieBreak(match, playerNum);
@@ -33,7 +34,7 @@ public class MatchScoreCalculationService {
     }
 
 
-    private void addPoint(MatchDTO match, int playerNum) {
+    private void addPoint(MatchModel match, int playerNum) {
 
         switch (match.getPlayerPoint(playerNum)) {
             case NULL_POINT:
@@ -61,7 +62,7 @@ public class MatchScoreCalculationService {
         }
     }
 
-    private void addGame(MatchDTO match, int playerNum) {
+    private void addGame(MatchModel match, int playerNum) {
         int playerGame = match.getPlayerGame(playerNum) + 1;
         match.setPlayerGame(playerNum, playerGame);
         int oppositePlayerGame = match.getPlayerGame(invId(playerNum));
@@ -73,14 +74,14 @@ public class MatchScoreCalculationService {
         }
     }
 
-    private void addSet(MatchDTO match, int playerNum) {
+    private void addSet(MatchModel match, int playerNum) {
         match.setPlayerSet(playerNum, match.getPlayerSet(playerNum) + 1);
         if (isMatchFinished(match)) {
             match.setWinnerByNum(playerNum);
         }
     }
 
-    private void processTieBreak(MatchDTO match, int playerNum){
+    private void processTieBreak(MatchModel match, int playerNum){
         int playerPoint = match.getPlayerPoint(playerNum) + 1;
         match.setPlayerPoint(playerNum, playerPoint);
         int oppositePlayerPoint = match.getPlayerPoint(invId(playerNum));
@@ -90,20 +91,20 @@ public class MatchScoreCalculationService {
         }
     }
 
-    public static boolean isTieBreak(MatchDTO match){
+    public static boolean isTieBreak(MatchModel match){
         return match.getPlayer1Game() == NUM_GAMES_TO_WIN && match.getPlayer2Game() == NUM_GAMES_TO_WIN;
     }
 
-    public static boolean isMatchFinished(MatchDTO match){
+    public static boolean isMatchFinished(MatchModel match){
         return match.getPlayer1Set() == NUM_SETS_TO_WIN || match.getPlayer2Set() == NUM_SETS_TO_WIN;
     }
 
-    private static boolean hasAdvantage(MatchDTO match, int playerNum){
+    private static boolean hasAdvantage(MatchModel match, int playerNum){
         return match.getPlayerPoint(playerNum) == ADVANTAGE;
     }
 
 
-    public static String getPlayerPointString(MatchDTO match, int playerNum){
+    public static String getPlayerPointString(MatchModel match, int playerNum){
         if (hasAdvantage(match, playerNum)) {
             return ADVANTAGE_STRING;
         } else if (hasAdvantage(match, invId(playerNum))) {

@@ -1,7 +1,7 @@
 package com.alexshin.tennisscoreboard.mapper;
 
-import com.alexshin.tennisscoreboard.model.MatchScoreModel;
-import com.alexshin.tennisscoreboard.model.dto.MatchDTO;
+import com.alexshin.tennisscoreboard.model.dto.MatchScoreDTO;
+import com.alexshin.tennisscoreboard.model.MatchModel;
 import com.alexshin.tennisscoreboard.model.entity.Match;
 import com.alexshin.tennisscoreboard.model.entity.Player;
 import org.modelmapper.Converter;
@@ -23,9 +23,9 @@ public class MatchMapper extends ModelMapper {
 
     private void configureMappings() {
 
-        Converter<MatchDTO, MatchScoreModel> toScoreConverter = context -> {
-            MatchDTO source = context.getSource();
-            return new MatchScoreModel(
+        Converter<MatchModel, MatchScoreDTO> toScoreConverter = context -> {
+            MatchModel source = context.getSource();
+            return new MatchScoreDTO(
                     source.getPlayer1().getName(),
                     source.getPlayer2().getName(),
                     String.valueOf(source.getPlayer1Set()),
@@ -39,21 +39,21 @@ public class MatchMapper extends ModelMapper {
                     );
         };
 
-        TypeMap<MatchDTO, MatchScoreModel> dtoToScoreMap = mapper.createTypeMap(MatchDTO.class, MatchScoreModel.class);
-        dtoToScoreMap.setConverter(toScoreConverter);
+        TypeMap<MatchModel, MatchScoreDTO> matchModelToScoreDtoMap = mapper.createTypeMap(MatchModel.class, MatchScoreDTO.class);
+        matchModelToScoreDtoMap.setConverter(toScoreConverter);
 
     }
 
-    public MatchScoreModel toScoreModel(MatchDTO match) {
-        return mapper.map(match, MatchScoreModel.class);
+    public MatchScoreDTO toScoreDto(MatchModel match) {
+        return mapper.map(match, MatchScoreDTO.class);
     }
 
 
-    public MatchDTO toDTO(Match matchEntity) {
-        return mapper.map(matchEntity, MatchDTO.class);
+    public MatchModel toMatchModel(Match matchEntity) {
+        return mapper.map(matchEntity, MatchModel.class);
     }
 
-    public Match toEntity(MatchDTO match) {
+    public Match toEntity(MatchModel match) {
         return mapper.map(match, Match.class);
     }
 

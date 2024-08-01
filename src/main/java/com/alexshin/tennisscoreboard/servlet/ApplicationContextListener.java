@@ -1,4 +1,4 @@
-package com.alexshin.tennisscoreboard.controller;
+package com.alexshin.tennisscoreboard.servlet;
 
 import com.alexshin.tennisscoreboard.util.HibernateUtil;
 import jakarta.servlet.ServletContextEvent;

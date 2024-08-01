@@ -12,10 +12,10 @@ public class Main {
 
 //        Player player1 = new Player("Alkaras");
 //        Player player2 = new Player("Medvedev");
-//        MatchDTO match = new MatchDTO(player1, player2, UUID.randomUUID());
+//        MatchModel match = new MatchModel(player1, player2, UUID.randomUUID());
 //        match.setWinnerByNum(1);
 //        MatchMapper mapper = new MatchMapper();
-//        MatchScoreModel matchScore = mapper.toScoreModel(match);
+//        MatchScoreDTO matchScore = mapper.toScoreModel(match);
         String NAME_FILTER_VALIDATE_PATTERN = "[a-zA-zА-Яа-я ]";
         MatchesRepository matchesRepository = new MatchesRepository();
 

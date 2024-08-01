@@ -1,7 +1,7 @@
 package com.alexshin.tennisscoreboard.mapper;
 
-import com.alexshin.tennisscoreboard.model.MatchScoreModel;
-import com.alexshin.tennisscoreboard.model.dto.MatchDTO;
+import com.alexshin.tennisscoreboard.model.dto.MatchScoreDTO;
+import com.alexshin.tennisscoreboard.model.MatchModel;
 import com.alexshin.tennisscoreboard.model.entity.Match;
 import com.alexshin.tennisscoreboard.model.entity.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MatchMapperTest {
 
     Match matchEntity;
-    MatchDTO matchDTO;
+    MatchModel matchModel;
     MatchMapper mapper = new MatchMapper();
     Player player1 = new Player(1, "Novak Djokovic_");
     Player player2 = new Player(2, "Daniil Medvedev_");
@@ -27,51 +27,51 @@ public class MatchMapperTest {
         matchEntity.setPlayer2(player2);
         matchEntity.setWinner(player1);
 
-        matchDTO = new MatchDTO(player1, player2, UUID.randomUUID());
-        matchDTO.setPlayerSet(1, 1);
-        matchDTO.setPlayerGame(1, 2);
-        matchDTO.setPlayerGame(2, 4);
-        matchDTO.setPlayerGame(1, 30);
-        matchDTO.setPlayerPoint(1, 41);
-        matchDTO.setPlayerPoint(2, 40);
-        matchDTO.setWinnerByNum(1);
+        matchModel = new MatchModel(player1, player2, UUID.randomUUID());
+        matchModel.setPlayerSet(1, 1);
+        matchModel.setPlayerGame(1, 2);
+        matchModel.setPlayerGame(2, 4);
+        matchModel.setPlayerGame(1, 30);
+        matchModel.setPlayerPoint(1, 41);
+        matchModel.setPlayerPoint(2, 40);
+        matchModel.setWinnerByNum(1);
     }
 
     @Test
     void entityToDTO() {
-        MatchDTO matchDTO = mapper.toDTO(matchEntity);
-        assertEquals(matchEntity.getPlayer1(), matchDTO.getPlayer1());
-        assertEquals(matchEntity.getPlayer2(), matchDTO.getPlayer2());
-        assertEquals(matchEntity.getWinner(), matchDTO.getWinner());
+        MatchModel matchModel = mapper.toMatchModel(matchEntity);
+        assertEquals(matchEntity.getPlayer1(), matchModel.getPlayer1());
+        assertEquals(matchEntity.getPlayer2(), matchModel.getPlayer2());
+        assertEquals(matchEntity.getWinner(), matchModel.getWinner());
     }
 
     @Test
     void dtoToEntity() {
-        var tempEntity = mapper.toEntity(matchDTO);
+        var tempEntity = mapper.toEntity(matchModel);
 
-        assertEquals(tempEntity.getPlayer1(), matchDTO.getPlayer1());
-        assertEquals(tempEntity.getPlayer2(), matchDTO.getPlayer2());
-        assertEquals(tempEntity.getWinner(), matchDTO.getWinner());
+        assertEquals(tempEntity.getPlayer1(), matchModel.getPlayer1());
+        assertEquals(tempEntity.getPlayer2(), matchModel.getPlayer2());
+        assertEquals(tempEntity.getWinner(), matchModel.getWinner());
     }
 
     @Test
     void dtoToScore() {
-        MatchScoreModel matchScore = mapper.toScoreModel(matchDTO);
+        MatchScoreDTO matchScore = mapper.toScoreDto(matchModel);
 
-        assertEquals(matchDTO.getPlayer1().getName(), matchScore.getPlayer1());
-        assertEquals(matchDTO.getPlayer2().getName(), matchScore.getPlayer2());
-        assertEquals(String.valueOf(matchDTO.getPlayer1Set()), matchScore.getPlayer1Set());
-        assertEquals(String.valueOf(matchDTO.getPlayer1Set()), matchScore.getPlayer1Set());
-        assertEquals(String.valueOf(matchDTO.getPlayer1Game()), matchScore.getPlayer1Game());
-        assertEquals(String.valueOf(matchDTO.getPlayer2Game()), matchScore.getPlayer2Game());
-        assertEquals(getPlayerPointString(matchDTO, 1), matchScore.getPlayer1Point());
-        assertEquals(getPlayerPointString(matchDTO, 2), matchScore.getPlayer2Point());
-        assertEquals(matchDTO.getUuid().toString(), matchScore.getUuid());
+        assertEquals(matchModel.getPlayer1().getName(), matchScore.getPlayer1());
+        assertEquals(matchModel.getPlayer2().getName(), matchScore.getPlayer2());
+        assertEquals(String.valueOf(matchModel.getPlayer1Set()), matchScore.getPlayer1Set());
+        assertEquals(String.valueOf(matchModel.getPlayer1Set()), matchScore.getPlayer1Set());
+        assertEquals(String.valueOf(matchModel.getPlayer1Game()), matchScore.getPlayer1Game());
+        assertEquals(String.valueOf(matchModel.getPlayer2Game()), matchScore.getPlayer2Game());
+        assertEquals(getPlayerPointString(matchModel, 1), matchScore.getPlayer1Point());
+        assertEquals(getPlayerPointString(matchModel, 2), matchScore.getPlayer2Point());
+        assertEquals(matchModel.getUuid().toString(), matchScore.getUuid());
 
-        if (matchDTO.getWinner() == null) {
+        if (matchModel.getWinner() == null) {
             assertEquals("", matchScore.getWinner());
         } else {
-            assertEquals(matchDTO.getWinner().getName(), matchScore.getWinner());
+            assertEquals(matchModel.getWinner().getName(), matchScore.getWinner());
         }
 
 
