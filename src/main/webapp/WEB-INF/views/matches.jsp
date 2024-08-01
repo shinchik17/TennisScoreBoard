@@ -21,17 +21,12 @@
         <label for="search-player" id="search-label">Player: </label>
         <c:if test="${empty requestScope.filter_by_player_name}">
             <input type="text" id="search-player" name="filter_by_player_name" placeholder="Enter player name">
-            <button type="submit">Search</button>
-            <button type="reset">Clear</button>
         </c:if>
         <c:if test="${not empty requestScope.filter_by_player_name}">
             <input type="text" id="search-player" name="filter_by_player_name" value="${requestScope.filter_by_player_name}">
-            <button type="submit">Search</button>
-            <form>
-                <input type="hidden" name="reset" value="true">
-                <button type="submit">Clear</button>
-            </form>
         </c:if>
+        <button type="submit">Search</button>
+        <button type="reset">Clear</button>
     </form>
     <table class="matches-table">
         <thead>
