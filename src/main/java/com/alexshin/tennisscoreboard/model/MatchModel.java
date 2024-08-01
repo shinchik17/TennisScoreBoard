@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-// TODO: rename to Model
+
 @Getter
 @NoArgsConstructor
 @Setter

@@ -20,7 +20,7 @@
         <table>
             <thead>
             <tr>
-                <th>Name</th>
+                <th class="name-cell">Name</th>
                 <th>Set</th>
                 <th>Game</th>
                 <th>Point</th>
@@ -30,7 +30,7 @@
 
             <tbody>
             <tr>
-                <td>${requestScope.matchScore.player1}</td>
+                <td class="name-cell">${requestScope.matchScore.player1}</td>
                 <td>${requestScope.matchScore.player1Set}</td>
                 <td>${requestScope.matchScore.player1Game}</td>
                 <td>${requestScope.matchScore.player1Point}</td>
@@ -39,7 +39,7 @@
                 </form></td>
             </tr>
             <tr>
-                <td>${requestScope.matchScore.player2}</td>
+                <td class="name-cell">${requestScope.matchScore.player2}</td>
                 <td>${requestScope.matchScore.player2Set}</td>
                 <td>${requestScope.matchScore.player2Game}</td>
                 <td>${requestScope.matchScore.player2Point}</td>
