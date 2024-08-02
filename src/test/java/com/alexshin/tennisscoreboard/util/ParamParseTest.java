@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParamParseTest {
-    String EMPTY = "";
+    final String EMPTY = "";
 
-    String LEGAL_PLAYER_NAME = "Name Surname Smth";
-    String ILLEGAL_PLAYER_NAME = "Player1";
+    final String LEGAL_PLAYER_NAME = "Name Surname Smth";
+    final String ILLEGAL_PLAYER_NAME = "Player1";
 
-    String LEGAL_PLAYER_NUM = "1";
-    String ILLEGAL_PLAYER_NUM = "3";
+    final String LEGAL_PLAYER_NUM = "1";
+    final String ILLEGAL_PLAYER_NUM = "3";
 
-    String LEGAL_PAGE_NUM = "5";
-    String ILLEGAL_PAGE_NUM = "0";
+    final String LEGAL_PAGE_NUM = "5";
+    final String ILLEGAL_PAGE_NUM = "0";
 
-    String LEGAL_UUID = UUID.randomUUID().toString();
-    String ILLEGAL_UUID = "231231-3231";
+    final String LEGAL_UUID = UUID.randomUUID().toString();
+    final String ILLEGAL_UUID = "231231-3231";
 
     @Test
     void testParsePlayerName() {

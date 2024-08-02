@@ -1,7 +1,6 @@
 package com.alexshin.tennisscoreboard.servlet;
 
 import com.alexshin.tennisscoreboard.exception.NoSuchMatchException;
-import com.alexshin.tennisscoreboard.mapper.MatchMapper;
 import com.alexshin.tennisscoreboard.model.entity.Match;
 import com.alexshin.tennisscoreboard.service.FinishedMatchesPersistenceService;
 import com.alexshin.tennisscoreboard.util.JspHelper;
@@ -22,7 +21,6 @@ import static com.alexshin.tennisscoreboard.util.ParseParams.*;
 @WebServlet(name = "matches-servlet", urlPatterns = "/matches")
 public class MatchesServlet extends HttpServlet {
     private final Logger logger = LogManager.getLogger();
-    private final MatchMapper mapper = new MatchMapper();
     private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
 
     @Override

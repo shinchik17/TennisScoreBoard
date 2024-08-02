@@ -1,7 +1,6 @@
 package com.alexshin.tennisscoreboard.service;
 
 import com.alexshin.tennisscoreboard.model.MatchModel;
-;
 
 public class MatchScoreCalculationService {
     public static final int NUM_SETS_TO_WIN = 2;

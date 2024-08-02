@@ -6,6 +6,7 @@ import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 @WebListener
 public class ApplicationContextListener implements ServletContextListener {
 

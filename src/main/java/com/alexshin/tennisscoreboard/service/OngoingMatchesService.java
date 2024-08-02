@@ -8,12 +8,13 @@ import com.alexshin.tennisscoreboard.model.entity.Player;
 import com.alexshin.tennisscoreboard.repository.PlayersRepository;
 import org.modelmapper.ModelMapper;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class OngoingMatchesService {
-    private final static Map<UUID, MatchModel> matchesMap = new HashMap<>();
+    private final static ConcurrentMap<UUID, MatchModel> matchesMap = new ConcurrentHashMap<>();
     private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
     private final PlayersRepository playersRepository = new PlayersRepository();
     private final ModelMapper mapper = new ModelMapper();

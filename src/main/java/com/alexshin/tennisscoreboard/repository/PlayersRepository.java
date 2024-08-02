@@ -3,7 +3,6 @@ package com.alexshin.tennisscoreboard.repository;
 
 import com.alexshin.tennisscoreboard.model.entity.Player;
 import com.alexshin.tennisscoreboard.util.HibernateUtil;
-import lombok.Cleanup;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

@@ -16,9 +16,9 @@ public class MatchMapperTest {
 
     Match matchEntity;
     MatchModel matchModel;
-    MatchMapper mapper = new MatchMapper();
-    Player player1 = new Player(1, "Novak Djokovic_");
-    Player player2 = new Player(2, "Daniil Medvedev_");
+    final MatchMapper mapper = new MatchMapper();
+    final Player player1 = new Player(1, "Novak Djokovic_");
+    final Player player2 = new Player(2, "Daniil Medvedev_");
 
     @BeforeEach
     void prepare() {
