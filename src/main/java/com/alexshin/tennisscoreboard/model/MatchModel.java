@@ -65,8 +65,8 @@ public class MatchModel {
             case 2 -> player2Game = game;
             default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         }
-        setPlayer1Point(0);
-        setPlayer2Point(0);
+        setPlayerPoint(1, 0);
+        setPlayerPoint(2, 0);
     }
 
     public int getPlayerSet(int playerNum) {
@@ -84,8 +84,8 @@ public class MatchModel {
             case 2 -> player2Set = set;
             default -> throw new IllegalArgumentException("Unexpected playerNum value: " + playerNum);
         }
-        setPlayer1Game(0);
-        setPlayer2Game(0);
+        setPlayerGame(1, 0);
+        setPlayerGame(2, 0);
     }
 
     public void setWinnerByNum(int playerNum) {
