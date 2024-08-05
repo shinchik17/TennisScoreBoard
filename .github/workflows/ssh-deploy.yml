@@ -1,4 +1,4 @@
-name: Deploy container on remote
+name: Deploy container on a remote server
 on:
   workflow_run:
     workflows: [Java CI/CD with Maven&Docker]
