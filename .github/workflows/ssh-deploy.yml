@@ -1,9 +1,9 @@
 name: Deploy container on remote
 on:
-  push:  # TODO: workflow_run:
-    branches: [ "main" ]
-    tags:
-      - release_v*
+  workflow_run:
+    workflows: [Java CI/CD with Maven&Docker]
+    types:
+      - completed
 
 jobs:
   deploy:
@@ -16,7 +16,6 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USERNAME }}
           password: ${{ secrets.REMOTE_PASSWORD }}
-#          key: ${{ secrets.REMOTE_SSH_KEY }}
           script: |
-            docker stop ${{ vars.REMOTE_APP_NAME }}
-            docker run -d -p 8080:8080 --name ${{ vars.REMOTE_APP_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.IMAGE_NAME }}:latest
+            docker stop ${{ vars.REMOTE_APP_NAME }} 2>/dev/null
+            docker run -d -p 80:8080 --name ${{ vars.REMOTE_APP_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.IMAGE_NAME }}:latest
