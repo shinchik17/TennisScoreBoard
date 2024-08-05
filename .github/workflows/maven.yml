@@ -11,8 +11,6 @@ name: Java CI/CD with Maven&Docker
 on:
   push:
     branches: [ "main" ]
-    tags:
-      - release_v*
 
 jobs:
   test:
