@@ -1,6 +1,6 @@
 name: Deploy container on remote
 on:
-  push:
+  push:  # TODO: workflow_run:
     branches: [ "main" ]
     tags:
       - release_v*
@@ -15,7 +15,8 @@ jobs:
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USERNAME }}
-          key: ${{ secrets.REMOTE_SSH_KEY }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+#          key: ${{ secrets.REMOTE_SSH_KEY }}
           script: |
             docker stop ${{ vars.REMOTE_APP_NAME }}
             docker run -d -p 8080:8080 --name ${{ vars.REMOTE_APP_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.IMAGE_NAME }}:latest
