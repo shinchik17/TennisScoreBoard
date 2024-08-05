@@ -4,7 +4,7 @@
 ---
 
 ## General info
-This project provide simple simulation of tennis matches:
+This project provides simple simulation of tennis matches:
 - creating new match;
 - score calculating;
 - view finished matches.
@@ -13,6 +13,8 @@ Tennis rules may vary a lot at different tournaments.
 So for this project were established following rules.
 - Match ends after one player won 2 sets (best of 3).
 - At score 6:6 tie-break (till 7 points) is starting.
+
+Inspired by [Sergey Zhukov](https://github.com/zhukovsd) and his [Java Backend Roadmap](https://zhukovsd.github.io/java-backend-learning-course/projects/tennis-scoreboard/)
 
 ## **Technologies**
 - **Jakarta EE (Servlet API)**: Provides a standard way to handle HTTP requests and responses.
