@@ -18,4 +18,5 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }}
           script: |
             docker rm -f ${{ vars.REMOTE_APP_NAME }} 2>/dev/null
-            docker run -d -p 80:8080 --pull=always --name ${{ vars.REMOTE_APP_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.IMAGE_NAME }}:latest
+            docker image rm -f ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.IMAGE_NAME }}:latest 2>/dev/null
+            docker run -d -p 80:8080 --name ${{ vars.REMOTE_APP_NAME }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.IMAGE_NAME }}:latest
