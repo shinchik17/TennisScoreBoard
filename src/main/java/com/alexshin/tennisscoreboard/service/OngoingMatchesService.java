@@ -1,6 +1,7 @@
 package com.alexshin.tennisscoreboard.service;
 
 
+import com.alexshin.tennisscoreboard.exception.IllegalPlayerNameException;
 import com.alexshin.tennisscoreboard.exception.NoSuchMatchException;
 import com.alexshin.tennisscoreboard.model.MatchModel;
 import com.alexshin.tennisscoreboard.model.entity.Match;
@@ -21,6 +22,11 @@ public class OngoingMatchesService {
 
 
     public MatchModel createNewMatch(String player1name, String player2name){
+
+        if (player1name.equals(player2name)) {
+            throw new IllegalPlayerNameException("Player names are identical");
+        }
+
         Player player1 = playersRepository.saveOrGet(new Player(player1name));
         Player player2 = playersRepository.saveOrGet(new Player(player2name));
         MatchModel match = new MatchModel(player1, player2, UUID.randomUUID());

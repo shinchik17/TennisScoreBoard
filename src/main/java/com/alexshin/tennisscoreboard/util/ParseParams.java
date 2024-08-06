@@ -14,7 +14,7 @@ public class ParseParams {
 
     public static String parsePlayerName(String playerName) {
         if (isValidPlayerName(playerName)) {
-            return playerName;
+            return playerName.trim();
         } else {
             throw new IllegalPlayerNameException(playerName);
         }
@@ -54,7 +54,7 @@ public class ParseParams {
 
         if (playerName != null) {
             if (isValidPlayerFilter(playerName)) {
-                return Optional.of(playerName);
+                return Optional.of(playerName.trim());
             } else if (playerName.isEmpty() || playerName.isBlank()) {
                 return Optional.empty();
             }

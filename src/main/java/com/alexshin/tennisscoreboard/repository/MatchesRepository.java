@@ -43,8 +43,14 @@ public class MatchesRepository implements Repository<Match> {
 
     public List<Match> findMatchesByPlayerName(int start, int amount, String playerName) {
         @Cleanup var session = sessionFactory.openSession();
-        Query<Match> query = session.createQuery("FROM Match WHERE player1.name = :name OR player2.name = :name ORDER BY id DESC", Match.class);
-        query.setParameter("name", playerName);
+        String queryString = """
+                FROM Match
+                WHERE LOWER(player1.name) LIKE :name
+                OR LOWER(player2.name) LIKE :name
+                ORDER BY id DESC
+                """;
+        Query<Match> query = session.createQuery(queryString, Match.class);
+        query.setParameter("name", "%" + playerName.toLowerCase() + "%");
         query.setFirstResult(start);
         query.setMaxResults(amount);
         return query.getResultList();
