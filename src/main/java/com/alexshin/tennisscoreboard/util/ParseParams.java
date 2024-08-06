@@ -1,6 +1,6 @@
 package com.alexshin.tennisscoreboard.util;
 
-import com.alexshin.tennisscoreboard.exception.*;
+import com.alexshin.tennisscoreboard.exception.parsing.*;
 
 import java.util.Optional;
 import java.util.UUID;

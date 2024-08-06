@@ -1,4 +1,4 @@
-package com.alexshin.tennisscoreboard.exception;
+package com.alexshin.tennisscoreboard.exception.service;
 
 import java.util.NoSuchElementException;
 

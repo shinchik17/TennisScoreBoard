@@ -1,68 +1,52 @@
 package com.alexshin.tennisscoreboard.repository;
 
 
+import com.alexshin.tennisscoreboard.exception.repository.MatchesRepositoryException;
 import com.alexshin.tennisscoreboard.model.entity.Match;
-import com.alexshin.tennisscoreboard.util.HibernateUtil;
-import lombok.Cleanup;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import java.util.List;
-import java.util.Optional;
 
-public class MatchesRepository implements Repository<Match> {
-    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-
-    @Override
-    public Match save(Match entity) {
-        @Cleanup var session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.persist(entity);
-        session.getTransaction().commit();
-        return entity;
-    }
-
-    @Override
-    public void delete(Match entity) {
-        @Cleanup var session = sessionFactory.openSession();
-        session.remove(entity);
-        session.flush();
-    }
-
-    @Override
-    public void update(Match entity) {
-        @Cleanup var session = sessionFactory.openSession();
-        session.merge(entity);
-    }
-
-    @Override
-    public Optional<Match> findById(Integer id) {
-        @Cleanup var session = sessionFactory.openSession();
-        return Optional.of(session.find(Match.class, id));
-    }
+public class MatchesRepository extends BaseRepository<Match> {
 
     public List<Match> findMatchesByPlayerName(int start, int amount, String playerName) {
-        @Cleanup var session = sessionFactory.openSession();
-        String queryString = """
-                FROM Match
-                WHERE LOWER(player1.name) LIKE :name
-                OR LOWER(player2.name) LIKE :name
-                ORDER BY id DESC
-                """;
-        Query<Match> query = session.createQuery(queryString, Match.class);
-        query.setParameter("name", "%" + playerName.toLowerCase() + "%");
-        query.setFirstResult(start);
-        query.setMaxResults(amount);
-        return query.getResultList();
+        try (var session = sessionFactory.openSession()) {
+            String queryString = """
+                    FROM Match
+                    WHERE LOWER(player1.name) LIKE :name
+                    OR LOWER(player2.name) LIKE :name
+                    ORDER BY id DESC
+                    """;
+            Query<Match> query = session.createQuery(queryString, Match.class);
+            query.setParameter("name", "%" + playerName.toLowerCase() + "%");
+            query.setFirstResult(start);
+            query.setMaxResults(amount);
+            return query.getResultList();
+
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return List.of();
     }
+
 
     public List<Match> findMatches(int start, int amount) {
-        @Cleanup var session = sessionFactory.openSession();
-        Query<Match> query = session.createQuery("FROM Match ORDER BY id DESC", Match.class);
-        query.setFirstResult(start);
-        query.setMaxResults(amount);
-        return query.getResultList();
+        try (var session = sessionFactory.openSession()) {
+            String queryString = "FROM Match ORDER BY id DESC";
+            Query<Match> query = session.createQuery(queryString, Match.class);
+            query.setFirstResult(start);
+            query.setMaxResults(amount);
+            return query.getResultList();
+
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return List.of();
     }
 
 
+    @Override
+    void handleException(Exception e) {
+        throw new MatchesRepositoryException(e);
+    }
 }

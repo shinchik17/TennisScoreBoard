@@ -1,15 +1,14 @@
 package com.alexshin.tennisscoreboard.service;
 
 
-import com.alexshin.tennisscoreboard.exception.IllegalPlayerNameException;
-import com.alexshin.tennisscoreboard.exception.NoSuchMatchException;
+import com.alexshin.tennisscoreboard.exception.parsing.IllegalPlayerNameException;
+import com.alexshin.tennisscoreboard.exception.service.NoSuchMatchException;
 import com.alexshin.tennisscoreboard.model.MatchModel;
 import com.alexshin.tennisscoreboard.model.entity.Match;
 import com.alexshin.tennisscoreboard.model.entity.Player;
 import com.alexshin.tennisscoreboard.repository.PlayersRepository;
 import org.modelmapper.ModelMapper;
 
-import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

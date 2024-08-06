@@ -1,17 +1,12 @@
 package com.alexshin.tennisscoreboard.repository;
 
-import java.util.Optional;
-
 @SuppressWarnings("unused")
-public interface Repository <E> {
+public interface Repository<E> {
 
     E save(E entity);
 
     void delete(E entity);
 
     void update(E entity);
-
-    Optional<E> findById(Integer id);
-
 
 }

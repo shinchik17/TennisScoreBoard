@@ -1,6 +1,6 @@
 package com.alexshin.tennisscoreboard.servlet;
 
-import com.alexshin.tennisscoreboard.exception.NoSuchMatchException;
+import com.alexshin.tennisscoreboard.exception.service.NoSuchMatchException;
 import com.alexshin.tennisscoreboard.mapper.MatchMapper;
 import com.alexshin.tennisscoreboard.model.MatchModel;
 import com.alexshin.tennisscoreboard.service.MatchScoreCalculationService;

@@ -1,4 +1,4 @@
-package com.alexshin.tennisscoreboard.exception;
+package com.alexshin.tennisscoreboard.exception.parsing;
 
 public class IllegalPlayerNameException extends IllegalArgumentException{
     public IllegalPlayerNameException(String s) {
