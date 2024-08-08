@@ -54,8 +54,8 @@ public class MatchesServlet extends HttpServlet {
             req.setAttribute("page", pageNum);
             req.setAttribute("max_row_num", finishedMatchesPersistenceService.PAGE_SIZE);
 
+            logger.info("Forward to matches.jsp");
             req.getRequestDispatcher(JspHelper.getPath("matches")).forward(req, resp);
-            logger.info("Forwarded to matches.jsp");
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
             logger.error(e.getMessage());

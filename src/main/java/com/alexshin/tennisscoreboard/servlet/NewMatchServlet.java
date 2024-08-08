@@ -25,8 +25,8 @@ public class NewMatchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.getRequestDispatcher(JspHelper.getPath("new-match")).forward(req, resp);
         logger.info("Received GET on /new-match. Forwarded to new-match.jsp");
+        req.getRequestDispatcher(JspHelper.getPath("new-match")).forward(req, resp);
 
     }
 
@@ -42,9 +42,9 @@ public class NewMatchServlet extends HttpServlet {
             MatchModel match = ongoingMatchesService.createNewMatch(player1Name, player2Name);
             logger.info("Got match with uuid=" + match.getUuid());
 
+            logger.info("Redirect to /match-score");
             String redirectURL = "%s/match-score?uuid=%s".formatted(req.getContextPath(), match.getUuid());
             resp.sendRedirect(redirectURL);
-            logger.info("Redirected to /match-score");
 
         } catch (Exception e) {
             logger.error(e.getMessage());

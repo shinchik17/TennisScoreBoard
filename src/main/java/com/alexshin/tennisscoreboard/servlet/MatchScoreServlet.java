@@ -36,8 +36,8 @@ public class MatchScoreServlet extends HttpServlet {
 
             req.setAttribute("matchScore", mapper.toScoreDto(match));
             req.setAttribute("uuid", uuid);
+            logger.info("Forward to match-score.jsp");
             req.getRequestDispatcher(JspHelper.getPath("match-score")).forward(req, resp);
-            logger.info("Forwarded to match-score.jsp");
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
             logger.error(e.getMessage());
@@ -66,15 +66,15 @@ public class MatchScoreServlet extends HttpServlet {
 
                 req.setAttribute("matchScore", mapper.toScoreDto(match));
 
+                logger.info("Forward to match-end.jsp");
                 req.getRequestDispatcher(JspHelper.getPath("match-end")).forward(req, resp);
-                logger.info("Forwarded to match-end.jsp");
                 return;
             }
 
             String redirectURL = "/match-score?uuid=%s".formatted(match.getUuid());
+            logger.info("Redirect to /match-score");
             resp.sendRedirect(req.getContextPath() + redirectURL);
 
-            logger.info("Redirected to /match-score");
 
         } catch (NoSuchMatchException | IllegalArgumentException e) {
             logger.error(e.getMessage());
