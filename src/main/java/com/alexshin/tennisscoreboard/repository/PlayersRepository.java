@@ -1,7 +1,7 @@
 package com.alexshin.tennisscoreboard.repository;
 
 
-import com.alexshin.tennisscoreboard.exception.repository.PlayerRepositoryException;
+import com.alexshin.tennisscoreboard.exception.repository.PlayersRepositoryException;
 import com.alexshin.tennisscoreboard.model.entity.Player;
 import org.hibernate.query.Query;
 
@@ -9,6 +9,10 @@ import java.util.Optional;
 
 
 public class PlayersRepository extends BaseRepository<Player> {
+
+    public PlayersRepository() {
+        super(Player.class);
+    }
 
     public Optional<Player> findByName(Player entity) {
         Optional<Player> result = Optional.empty();
@@ -18,7 +22,7 @@ public class PlayersRepository extends BaseRepository<Player> {
             query.uniqueResultOptional();
             result = query.uniqueResultOptional();
         } catch (Exception e) {
-            handleException(e);
+            rethrowException(e);
         }
         return result;
     }
@@ -31,9 +35,7 @@ public class PlayersRepository extends BaseRepository<Player> {
 
 
     @Override
-    void handleException(Exception e) {
-        throw new PlayerRepositoryException(e);
+    void rethrowException(Exception e) {
+        throw new PlayersRepositoryException(e);
     }
-
-
 }

@@ -7,9 +7,13 @@ import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.schema.Action;
 
-public class HibernateUtil {
+public final class HibernateUtil {
     @Getter
     private static final SessionFactory sessionFactory;
+
+    private HibernateUtil(){
+        throw new UnsupportedOperationException();
+    };
 
     static {
         try {

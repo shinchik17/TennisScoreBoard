@@ -3,11 +3,17 @@ package com.alexshin.tennisscoreboard.repository;
 
 import com.alexshin.tennisscoreboard.exception.repository.MatchesRepositoryException;
 import com.alexshin.tennisscoreboard.model.entity.Match;
+import org.hibernate.HibernateException;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class MatchesRepository extends BaseRepository<Match> {
+
+
+    public MatchesRepository() {
+        super(Match.class);
+    }
 
     public List<Match> findMatchesByPlayerName(int start, int amount, String playerName) {
         try (var session = sessionFactory.openSession()) {
@@ -23,8 +29,8 @@ public class MatchesRepository extends BaseRepository<Match> {
             query.setMaxResults(amount);
             return query.getResultList();
 
-        } catch (Exception e) {
-            handleException(e);
+        } catch (HibernateException e) {
+            rethrowException(e);
         }
         return List.of();
     }
@@ -38,15 +44,15 @@ public class MatchesRepository extends BaseRepository<Match> {
             query.setMaxResults(amount);
             return query.getResultList();
 
-        } catch (Exception e) {
-            handleException(e);
+        } catch (HibernateException e) {
+            rethrowException(e);
         }
         return List.of();
     }
 
 
     @Override
-    void handleException(Exception e) {
+    void rethrowException(Exception e) {
         throw new MatchesRepositoryException(e);
     }
 }
