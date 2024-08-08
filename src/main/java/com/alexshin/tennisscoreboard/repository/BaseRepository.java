@@ -20,13 +20,13 @@ public abstract class BaseRepository<E> implements Repository<E> {
             transaction = session.beginTransaction();
             session.persist(entity);
             transaction.commit();
+            return entity;
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            rethrowException(e);
+            throw specifyException(e);
         }
-        return entity;
     }
 
 
@@ -40,7 +40,7 @@ public abstract class BaseRepository<E> implements Repository<E> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            rethrowException(e);
+            throw specifyException(e);
         }
     }
 
@@ -61,7 +61,7 @@ public abstract class BaseRepository<E> implements Repository<E> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            rethrowException(e);
+            throw specifyException(e);
         }
     }
 
@@ -76,7 +76,6 @@ public abstract class BaseRepository<E> implements Repository<E> {
     }
 
 
-    abstract void rethrowException(Exception e);
-
+    abstract RuntimeException specifyException(Exception e);
 
 }

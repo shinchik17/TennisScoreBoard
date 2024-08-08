@@ -15,16 +15,14 @@ public class PlayersRepository extends BaseRepository<Player> {
     }
 
     public Optional<Player> findByName(Player entity) {
-        Optional<Player> result = Optional.empty();
         try (var session = sessionFactory.openSession()) {
             Query<Player> query = session.createQuery("FROM Player WHERE name = :name", Player.class);
             query.setParameter("name", entity.getName());
             query.uniqueResultOptional();
-            result = query.uniqueResultOptional();
+            return query.uniqueResultOptional();
         } catch (Exception e) {
-            rethrowException(e);
+            throw specifyException(e);
         }
-        return result;
     }
 
 
@@ -35,7 +33,8 @@ public class PlayersRepository extends BaseRepository<Player> {
 
 
     @Override
-    void rethrowException(Exception e) {
+    RuntimeException specifyException(Exception e) {
         throw new PlayersRepositoryException(e);
     }
+
 }

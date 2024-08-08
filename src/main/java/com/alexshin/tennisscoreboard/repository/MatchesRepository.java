@@ -30,9 +30,8 @@ public class MatchesRepository extends BaseRepository<Match> {
             return query.getResultList();
 
         } catch (HibernateException e) {
-            rethrowException(e);
+            throw specifyException(e);
         }
-        return List.of();
     }
 
 
@@ -45,14 +44,14 @@ public class MatchesRepository extends BaseRepository<Match> {
             return query.getResultList();
 
         } catch (HibernateException e) {
-            rethrowException(e);
+            throw specifyException(e);
         }
-        return List.of();
     }
 
 
     @Override
-    void rethrowException(Exception e) {
-        throw new MatchesRepositoryException(e);
+    RuntimeException specifyException(Exception e) {
+        return new MatchesRepositoryException(e);
     }
+
 }
